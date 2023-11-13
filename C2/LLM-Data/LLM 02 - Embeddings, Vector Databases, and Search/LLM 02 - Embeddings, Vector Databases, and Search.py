@@ -128,6 +128,8 @@ faiss.normalize_L2(content_encoded_normalized)
 
 # Index1DMap translates search results to IDs: https://faiss.ai/cpp_api/file/IndexIDMap_8h.html#_CPPv4I0EN5faiss18IndexIDMapTemplateE
 # The IndexFlatIP below builds index
+# IP Stands for Inner Product , FLAT means no vector compression is involved
+# You will have to use IndexIDMap .If you want to map your vectorsIndex created with index ids
 index_content = faiss.IndexIDMap(faiss.IndexFlatIP(len(faiss_title_embedding[0])))
 index_content.add_with_ids(content_encoded_normalized, id_index)
 
@@ -160,6 +162,8 @@ def search_content(query, pdf_to_index, k=3):
 # COMMAND ----------
 
 display(search_content("animal", pdf_to_index))
+
+### Till now we havent used Language Model to generate new text
 
 # COMMAND ----------
 
